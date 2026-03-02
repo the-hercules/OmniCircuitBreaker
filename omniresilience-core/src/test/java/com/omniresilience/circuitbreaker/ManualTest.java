@@ -1,4 +1,4 @@
-package com.omniresilience.examples;
+package com.omniresilience.circuitbreaker;
 
 import com.omniresilience.circuitbreaker.CircuitBreaker;
 import com.omniresilience.circuitbreaker.CircuitBreakerConfig;
@@ -22,7 +22,7 @@ public class ManualTest {
         CircuitBreakerConfig config = CircuitBreakerConfig.builder()
                 .failureThreshold(3)  // Open after 3 failures
                 .timeout(Duration.ofSeconds(5))  // Stay open for 5 seconds
-                .halfOpenMaxCalls(2)  // Allow 2 test requests in half-open
+                .halfOpenThreshold(2)  // Allow 2 test requests in half-open
                 .retryConfig(RetryConfig.builder()
                         .maxAttempts(2)  // Retry once
                         .build())
@@ -81,9 +81,9 @@ public class ManualTest {
         System.out.printf("  Metrics: %s, Consecutive Failures: %d, Success: %d, Failed: %d, Rejected: %d\n",
                 metrics.getState(),
                 metrics.getConsecutiveFailures(),
-                metrics.getNumberOfSuccessfulCalls(),
-                metrics.getNumberOfFailedCalls(),
-                metrics.getNumberOfNotPermittedCalls());
+                metrics.getSuccessfulCalls(),
+                metrics.getFailedCalls(),
+                metrics.getRejectedCalls());
     }
 
     /**
