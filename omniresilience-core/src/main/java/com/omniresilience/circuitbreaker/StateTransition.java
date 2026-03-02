@@ -13,13 +13,13 @@ public class StateTransition{
    private static final Logger logger = LoggerFactory.getLogger(StateTransition.class);
 
     private final String circuitBreakerName;
-    private final String fromState;
-    private final String toState;
+    private final State fromState;
+    private final State toState;
     private final Instant timestamp;
     private final String reason;
 
 
-    private StateTransition(String circuitBreakerName, String fromState, String toState, String reason){
+    private StateTransition(String circuitBreakerName, State fromState, State toState, String reason){
         this.circuitBreakerName = circuitBreakerName;
         this.fromState = fromState;
         this.toState = toState;
@@ -30,7 +30,7 @@ public class StateTransition{
     /**
      * Create and log state transition.
      */
-    public static StateTransition transition(String circuitBreakerName, String fromState, String toState, String reason){
+    public static StateTransition transition(String circuitBreakerName, State fromState, State toState, String reason){
        StateTransition transition = new StateTransition(circuitBreakerName,fromState,toState,reason);
        transition.log();
        return transition;
@@ -43,11 +43,11 @@ public class StateTransition{
         return circuitBreakerName;
     }
 
-    public String getFromState() {
+    public State getFromState() {
         return fromState;
     }
 
-    public String getToState() {
+    public State getToState() {
         return toState;
     }
 

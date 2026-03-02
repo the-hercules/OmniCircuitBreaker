@@ -1,5 +1,6 @@
 package com.omniresilience.retry;
 
+import com.omniresilience.exception.RetryExhaustedException;
 import com.sun.net.httpserver.Authenticator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

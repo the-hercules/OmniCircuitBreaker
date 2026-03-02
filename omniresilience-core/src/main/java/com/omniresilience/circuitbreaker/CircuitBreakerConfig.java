@@ -48,7 +48,7 @@ public class CircuitBreakerConfig {
         private int failureThreshold = 5;
         private Duration timeout = Duration.ofSeconds(60);
         private int halfOpenThreshold = 2;
-        private RetryConfig retryConfig = RetryConfig.Builder.build();
+        private RetryConfig retryConfig = RetryConfig.builder().build();
 
         public Builder failureThreshold(int failureThreshold){
             if(failureThreshold<=0){
